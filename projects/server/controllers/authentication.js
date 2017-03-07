@@ -5,6 +5,10 @@ exports.signup = function(req, res, next) {
   const email = req.body.email;
   const password = req.body.password;
 
+  if( !email || !password ) {
+    return res.status(422).send({ error: 'You must provide email and password '});
+  }
+
   // 查看是否存在这个email
   User.findOne({ email: email }, function(err, existingUser){
     if( err ) { return next(err); }
