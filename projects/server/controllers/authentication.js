@@ -26,6 +26,6 @@ exports.signup = function(req, res, next) {
     if(err) {return next(err);}
 
     //反馈成功信息
-    res.json(user);
+    res.json({ success: true });
   }); 
 }
