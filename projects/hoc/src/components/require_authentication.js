@@ -1,12 +1,32 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 export default function(ComposedComponent) {
   class Authentication extends Component {
+    static contextTypes = {
+      router: React.PropTypes.object
+    }
+
+    componentWillMount() {
+      if(!this.props.authenticated){
+        this.context.router.push('/');
+      }
+    }
+
+    componentWillUpdate( nextProps ) {
+      if(!nextProps.authenticated){
+        this.context.router.push('/');
+      }
+    }
+
     render(){
-      //这里的props是最后组合的Component实例化时传进来的props
       return <ComposedComponent {...this.props} />; 
     }
   }
 
-  return Authentication;
+  function mapStateToProps(state) {
+    return { authenticated: state.authenticated }
+  }
+
+  return connect(mapStateToProps)(Authentication);
 }
