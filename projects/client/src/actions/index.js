@@ -55,5 +55,12 @@ export function signupUser({ email, password }) {
   }
 }
 
-
+export function fetchMessage() {
+  return function(dispatch) {
+    axios.get(ROOT_URL)
+      .then(response => {
+        console.log(response);
+      });
+  }
+}
 
