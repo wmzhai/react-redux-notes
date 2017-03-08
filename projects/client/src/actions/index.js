@@ -13,7 +13,8 @@ export function signinUser({ email, password }) {
         // - 更新状态，显示用户是authenticated
         dispatch({type: AUTH_USER});
         
-        // - 保存 JWT token，(到哪里？)
+        // - 保存 JWT token，(到哪里？-> LocalStorage )
+        localStorage.setItem('token', response.data.token);
 
         // - 重定向到路径 '/feature'
         browserHistory.push('/feature');
