@@ -8,14 +8,19 @@ const LocalStrategy = require('passport-local');
 
 // Create local strategy
 const localOptions = { usernameField: 'email'};
-const localLogin = new LocalStrategy(localOptions ,function(email,passport,done){
+const localLogin = new LocalStrategy(localOptions ,function(email,password,done){
   //验证用户名密码
   User.findOne({email:email},function(err,user){
     if(err) {return done(err,false); } //查找出错
     if(!user){ return  done(null,false); } //查找正确，没找到
     
     //比较密码
-    
+    user.comparePassword(password, function(err, isMatch) {
+      if (err) { return done(err); }
+      if (!isMatch) { return done(null, false); }
+
+      return done(null, user);
+    });
   })
 });
 
@@ -42,3 +47,4 @@ const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done){
 
 // Tell passport to use the strategy
 passport.use(jwtLogin);
+passport.use(localLogin);
