@@ -10,6 +10,13 @@ const LocalStrategy = require('passport-local');
 const localOptions = { usernameField: 'email'};
 const localLogin = new LocalStrategy(localOptions ,function(email,passport,done){
   //验证用户名密码
+  User.findOne({email:email},function(err,user){
+    if(err) {return done(err,false); } //查找出错
+    if(!user){ return  done(null,false); } //查找正确，没找到
+    
+    //比较密码
+    
+  })
 });
 
 
