@@ -17,7 +17,7 @@ router(app);
 
 
 // server setup
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3090;
 const server = http.createServer(app);
 server.listen(port);
 console.log('Server listening on:', port);
