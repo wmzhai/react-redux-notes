@@ -40,3 +40,9 @@ All combineReducers() does is generate a function that calls your reducers with 
 
 
 ## Store
+
+
+## Middleware
+
+
+ It provides a third-party extension point between dispatching an action, and the moment it reaches the reducer.
