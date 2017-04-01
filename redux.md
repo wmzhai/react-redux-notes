@@ -46,3 +46,5 @@ All combineReducers() does is generate a function that calls your reducers with 
 
 
  It provides a third-party extension point between dispatching an action, and the moment it reaches the reducer.
+ 
+ * [Understanding Redux Middleware](https://medium.com/@meagle/understanding-87566abcfb7a) 很不错，可以看看 
